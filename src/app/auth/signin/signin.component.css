@@ -1,3 +1,13 @@
 button{
     margin: 5px;
 }
+span.help-block{
+    border-bottom-color: red;
+}
+.help-block{
+    color: red;
+}
+.email.ng-invalid{
+    border-color: red;
+    background-color: red;
+}

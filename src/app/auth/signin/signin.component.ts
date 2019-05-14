@@ -1,17 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, OnDestroy {
+  
+  message ='Server Says : ';
+  subscription : Subscription;
+  //@ViewChild('f') signupForm : NgForm;
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService) { 
+    this.subscription =  this.authService.errorSubject.subscribe(message=>{this.message+=message.message});
+  }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onSignin(form : NgForm){
@@ -20,4 +31,6 @@ export class SigninComponent implements OnInit {
     console.log(email);
     this.authService.signInUser(email,password);
   }
+
+  
 }

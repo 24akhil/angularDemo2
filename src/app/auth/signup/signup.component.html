@@ -1,17 +1,30 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-
+    <label style="color:blue"><h2>Thanks for counting on us!</h2></label>
     <form (ngSubmit)="onSignup(f)" #f="ngForm">
       <div class="form-group">
     
           <label for="email">Mail</label>
-          <input type="email" name="email" id="email" ngModel class="form-control">
+          <input type="email" name="email" id="email" ngModel 
+           #email="ngModel"
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"           
+           required
+           class = "form-control"
+          >
+          <!-- <span  class="help-block" *ngIf="email.errors.required && email.touched">Email is required</span> -->
+          <span class="help-block" *ngIf="!email.valid && email.touched">Please enter valid email!</span>
       </div> 
       <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" id="password" ngModel 
           class="form-control"
-         >
+          #password = "ngModel"
+          minlength="6"
+          required
+          >
+          <span class="help-block" 
+          *ngIf="!password.valid && password.touched">
+          Minimun length should be of six characters!</span>
        
         <button class="btn btn-primary" type="submit">Sign Up</button>
       </div>
