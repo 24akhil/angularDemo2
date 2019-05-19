@@ -45,7 +45,8 @@ export class RecipeService {
   }
 
   getRecipe(index: number) {
-    return this.recipes[index];
+    return this.recipes[index]?this.recipes[index]:new Recipe(null,null,null,null);
+    //return this.recipes[index];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {

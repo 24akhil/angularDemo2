@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './core/header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
@@ -22,32 +23,53 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
+import { RecipesModule } from './recipes/recipes.module';
+import { SharedModule } from './shared/shared.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './core/home/home.component';
+import { CoreModule } from './core/core.module';
+import { TokenInterceptor } from './token-interceptor';
+import { LoadingScreenComponent } from './ui/loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    SignupComponent,
-    SigninComponent
+    AppComponent,    
+   // HeaderComponent,
+    //HomeComponent,
+    // RecipesComponent,
+    // RecipeListComponent,
+    // RecipeDetailComponent,
+    // RecipeItemComponent,
+    // RecipeStartComponent,
+    // RecipeEditComponent,
+    // ShoppingListComponent,
+    // ShoppingEditComponent,
+    // DropdownDirective,   
+    // SignupComponent,
+    // SigninComponent,  
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    AppRoutingModule
+    //FormsModule,
+    //ReactiveFormsModule,
+    HttpModule,    
+    HttpClientModule,
+    //RecipesModule,    
+    SharedModule,
+    ShoppingListModule,
+    AuthModule,
+    AppRoutingModule,
+    CoreModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService,
-              AuthService, AuthGuard],
+  providers: [
+    TokenInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
