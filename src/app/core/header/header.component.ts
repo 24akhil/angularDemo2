@@ -28,10 +28,11 @@ export class HeaderComponent {
 
   onLogout(){
     this.authService.logout();
-    console.log(this.authService.isAuthenticated())
+    //console.log("logout:"+this.authService.isAuthenticated())
   }
 
-  isLogin(){
+  checkLogin(){
+   // console.log("chkLogin"+this.authService.isAuthenticated());
     return this.authService.isAuthenticated();
-  }
+    }
 }

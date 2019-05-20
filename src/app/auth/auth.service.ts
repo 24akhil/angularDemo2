@@ -7,7 +7,7 @@ import { Subject, observable } from 'rxjs';
 @Injectable()
 export class AuthService{
 
-    token ='';
+    token =null;
     dbError='';
     errorSubject = new Subject<any>();
 
@@ -46,6 +46,7 @@ export class AuthService{
     logout(){
         firebase.auth().signOut();
         this.token = null;
+        console.log("LogoutService"+this.token)
         this.router.navigate(['/']);
     }
     getToken(){        
@@ -55,13 +56,13 @@ export class AuthService{
                 this.token = token;
             }
         );
-        console.log('Check :'+this.token);
+       // console.log('Check :'+this.token);
         return this.token;
     }
 
     isAuthenticated(){
-        //console.log("Token : "+this.token);
-        return this.token!=='';
+       // console.log("Token : "+this.token);   
+        return this.token!==null;
        // return false;
     }
     

@@ -20,8 +20,7 @@ export class TokenInterceptor implements HttpInterceptor{
     const token = this.authServece.getToken();
     console.log('jai mata di!');
     const apiReq = req.clone({ url: req.url+'?auth='+token });
-    if(this.activeRequests===0){
-      console.log();
+    if(this.activeRequests===0){     
       this.loadingScreenService.startLoading();
     }
     this.activeRequests++;
@@ -36,8 +35,7 @@ export class TokenInterceptor implements HttpInterceptor{
     
   }
     delay(ms: number) {
-      console.log("delay");
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    }
 
 }

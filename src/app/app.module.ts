@@ -34,7 +34,7 @@ import { LoadingScreenComponent } from './ui/loading-screen/loading-screen.compo
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,        
    // HeaderComponent,
     //HomeComponent,
     // RecipesComponent,
