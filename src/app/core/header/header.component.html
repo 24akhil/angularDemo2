@@ -4,7 +4,8 @@
       <a routerLink="/" class="navbar-brand">Recipe Book</a>
     </div>
 
-    <div class="collapse navbar-collapse">
+    <!-- <div class="collapse navbar-collapse"> -->
+        <div class="navbar-default">        
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
         <li routerLinkActive="active"><a routerLink="/shopping-list" *ngIf="checkLogin()">Shopping List</a></li>

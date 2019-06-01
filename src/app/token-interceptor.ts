@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { finalize } from 'rxjs/operators';
@@ -19,7 +19,10 @@ export class TokenInterceptor implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authServece.getToken();
     console.log('jai mata di!');
-    const apiReq = req.clone({ url: req.url+'?auth='+token });
+    const apiReq = req.clone({ 
+      url: req.url,
+      params : new HttpParams().set('auth',token)});//+'?auth='+token 
+      
     if(this.activeRequests===0){     
       this.loadingScreenService.startLoading();
     }

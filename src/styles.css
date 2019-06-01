@@ -3,3 +3,4 @@ body{
     background-image: url(assets/food.png);
     background-repeat:repeat;
   }
+body { margin: 0; }

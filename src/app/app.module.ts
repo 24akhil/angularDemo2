@@ -31,6 +31,7 @@ import { HomeComponent } from './core/home/home.component';
 import { CoreModule } from './core/core.module';
 import { TokenInterceptor } from './token-interceptor';
 import { LoadingScreenComponent } from './ui/loading-screen/loading-screen.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LoadingScreenComponent } from './ui/loading-screen/loading-screen.compo
     ShoppingListModule,
     AuthModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule    
   ],
   providers: [
     TokenInterceptor,
