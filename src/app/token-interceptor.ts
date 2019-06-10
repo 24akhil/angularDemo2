@@ -1,8 +1,8 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth/auth.service';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from './auth/auth.service';
 import { LoadingScreenService } from './ui/loading-screen/loading-screen.service';
 
 

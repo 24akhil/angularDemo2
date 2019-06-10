@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { Subscription } from 'rxjs';
 import { ShoppingListService } from '../shopping-list.service';
@@ -37,7 +38,7 @@ export class DataTableComponent implements OnInit   {
   private subscription: Subscription;
   displayedColumns: string[] = ['name', 'amount'];
   dataSource = new MatTableDataSource(this.ingredients);//ELEMENT_DATA
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort,{static: true}) sort: MatSort;
 
   constructor(private slService: ShoppingListService) { }
 
